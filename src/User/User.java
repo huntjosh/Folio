@@ -1,34 +1,39 @@
 package User;
 
-import Exceptions.TaskException;
+import Portfolio.Asset.Asset;
+import Portfolio.Portfolio;
 import Task.Task;
-
 import java.util.ArrayList;
+import java.util.HashSet;
+
 
 public abstract class User {
-    private ArrayList<Task> tasks;
+    private HashSet<Task> tasks;
+    private HashSet<Portfolio> portfolios;
+    private HashSet<Asset> assets;
 
-    public void assignTask(Task task) throws TaskException {
-        if (task.hasAssignee()) throw new TaskException();
+    public boolean assignTask(Task task) {
+        if (!task.assign(this)) return false;
 
-        task.assign(this);
         tasks.add(task);
+        return true;
     }
 
-    public void removeTask(Task task) throws TaskException {
-        if (!tasks.contains(task)) throw new TaskException();
+    public boolean removeTask(Task task) {
+        // If the task was assigned but not added to the users task list of vice versa, do a safety clear
+        if (tasks.contains(task) && (task.getAssignee() != this)) return false;
 
         task.unassign();
         tasks.remove(task);
+        return true;
     }
 
-    public int removeAllTasks(){
-        int taskRemovedCount = 0;
-        for (Task task : this.tasks){
-            task.unassign();
-            taskRemovedCount++;
-        }
+    public ArrayList<Task> removeAllTasks(){
+        // Could potentially have duplicate tasks, so need an array list
+        ArrayList<Task> failedTasks = new ArrayList<>();
 
-        return taskRemovedCount;
+        for (Task task : tasks){ if (!removeTask(task)) failedTasks.add(task); }
+
+        return failedTasks;
     }
 }
