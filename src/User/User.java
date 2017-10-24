@@ -3,14 +3,16 @@ package User;
 import Portfolio.Asset.Asset;
 import Portfolio.Portfolio;
 import Task.Task;
+import User.UserComponents.Contact;
 import java.util.ArrayList;
 import java.util.HashSet;
 
 
 public abstract class User {
-    private HashSet<Task> tasks;
-    private HashSet<Portfolio> portfolios;
-    private HashSet<Asset> assets;
+    HashSet<Task> tasks;
+    HashSet<Portfolio> portfolios;
+    HashSet<Asset> assets;
+    Contact contact;
 
     public boolean assignTask(Task task) {
         if (!task.assign(this)) return false;
@@ -35,5 +37,13 @@ public abstract class User {
         for (Task task : tasks){ if (!removeTask(task)) failedTasks.add(task); }
 
         return failedTasks;
+    }
+
+    public Contact getContact() {
+        return contact;
+    }
+
+    public void setContact(Contact contact) {
+        this.contact = contact;
     }
 }
