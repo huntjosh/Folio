@@ -6,6 +6,7 @@ import Task.Task;
 import User.UserComponents.Contact;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Iterator;
 
 
 public abstract class User {
@@ -13,6 +14,12 @@ public abstract class User {
     HashSet<Portfolio> portfolios;
     HashSet<Asset> assets;
     Contact contact;
+
+    public User(){
+        tasks = new HashSet<Task>();
+        portfolios = new HashSet<Portfolio>();
+        assets = new HashSet<Asset>();
+    }
 
     public boolean assignTask(Task task) {
         if (!task.assign(this)) return false;
@@ -30,13 +37,12 @@ public abstract class User {
         return true;
     }
 
-    public ArrayList<Task> removeAllTasks(){
-        // Could potentially have duplicate tasks, so need an array list
-        ArrayList<Task> failedTasks = new ArrayList<>();
-
-        for (Task task : tasks){ if (!removeTask(task)) failedTasks.add(task); }
-
-        return failedTasks;
+    public void removeAllTasks(){
+        Iterator<Task> iter = tasks.iterator();
+        while (iter.hasNext()) {
+            iter.next().unassign();
+            iter.remove();
+        }
     }
 
     public Contact getContact() {
@@ -45,5 +51,21 @@ public abstract class User {
 
     public void setContact(Contact contact) {
         this.contact = contact;
+    }
+
+    public HashSet<Asset> getAssets() {
+        return new HashSet<>(assets);
+    }
+
+    public HashSet<Task> getTasks() {
+        return new HashSet<>(tasks);
+    }
+
+    public HashSet<Portfolio> getPortfolios() {
+        return new HashSet<>(portfolios);
+    }
+
+    public boolean addAsset(Asset asset) {
+        return assets.add(asset);
     }
 }
