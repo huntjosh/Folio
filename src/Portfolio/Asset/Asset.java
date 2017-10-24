@@ -2,6 +2,8 @@ package Portfolio.Asset;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+
+import Core.HashSetHelper;
 import Task.Task;
 
 public class Asset {
@@ -64,14 +66,7 @@ public class Asset {
     }
 
     public ArrayList<Task> addTasks(HashSet<Task> tasks){
-        // Could potentially have duplicate tasks, so need an array list
-        ArrayList<Task> failedTasks = new ArrayList<Task>();
-
-        for (Task task : tasks){
-            if (!addTask(task)) failedTasks.add(task);
-            else task.addAsset(this);
-        }
-
-        return failedTasks;
+        // Returns failed adds
+        return HashSetHelper.addToHashSet(this.tasks, tasks);
     }
 }

@@ -5,8 +5,9 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import Portfolio.Asset.Asset;
 import User.User;
+import Core.HashSetHelper;
 
-public class Task {
+public class Task{
     private LocalDateTime due;
     private LocalDateTime createdAt;
     private String name;
@@ -57,12 +58,8 @@ public class Task {
     }
 
     public ArrayList<Asset> addAssets(HashSet<Asset> assets){
-        // Could potentially have duplicate tasks, so need an array list
-        ArrayList<Asset> failedAsset = new ArrayList<>();
-
-        for (Asset asset : assets){ if (!addAsset(asset)) failedAsset.add(asset); }
-
-        return failedAsset;
+        // Returns failed adds
+        return HashSetHelper.addToHashSet(this.assets, assets);
     }
 
     public boolean unassign(){
