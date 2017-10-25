@@ -13,6 +13,15 @@ public class Address {
 
     }
 
+    @Override
+    public String toString() {
+        return streetNum + " " +
+                street + ", " +
+                suburb +
+                (country != null ? ", " + country :"") +
+                (postCode != null ? ", " + postCode : "");
+    }
+
     public Address(int streetNum, String street, String suburb){
         this.streetNum = streetNum;
         this.street = street;

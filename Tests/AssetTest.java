@@ -26,4 +26,10 @@ class AssetTest {
         Assertions.assertEquals(asset.getName(), "Bus");
         Assertions.assertNotEquals(asset.getName(), "Car");
     }
+
+    @Test
+    void toStringTest() {
+        Asset asset = new Asset.Builder("Car", 10000).build();
+        Assertions.assertEquals("Name: Car, Value: 10000.0", asset.toString());
+    }
 }

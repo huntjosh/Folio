@@ -1,9 +1,15 @@
 package Tests;
 
 import Exceptions.TaskException;
+import Exceptions.UserException;
 import Task.Task;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
+
 import User.Stakeholder;
+import User.User;
+import User.UserComponents.Contact;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -72,5 +78,18 @@ class TaskTest {
         Task task = new Task.Builder(LocalDateTime.now(), creationDueDate, "Inspection").build();
         task.setDue(newDueDate);
         Assertions.assertFalse(task.getDue().isEqual(creationDueDate));
+    }
+
+    @Test
+    void toStringTest() {
+        LocalDateTime createdDate = LocalDateTime.now();
+        LocalDateTime dueDate = LocalDateTime.now().minusSeconds(10);
+        Task task = new Task.Builder(createdDate, dueDate, "Inspection").build();
+        Assertions.assertEquals("Name: Inspection, Task Due: " +
+                        dueDate.format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM, FormatStyle.MEDIUM)) +
+                        ", Task Created At: " +
+                        createdDate.format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM, FormatStyle.MEDIUM)) +
+                        ", Assignee: None"
+                , task.toString());
     }
 }

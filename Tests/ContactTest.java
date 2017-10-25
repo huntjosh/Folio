@@ -64,4 +64,15 @@ public class ContactTest {
         Assertions.assertFalse(contact.removeAltPhoneNumber("Work2"));
         Assertions.assertEquals(contact.getAltPhoneNumbers().size(), 3);
     }
+
+    @Test
+    void toStringTest() {
+        Contact contact = new Contact.Builder(
+                "Josh",
+                "Hunt",
+                "02040490234",
+                "joshhhunt@gmail.com")
+                .build();
+        Assertions.assertEquals("First Name: Josh, Last Name: Hunt, Phone Number: 02040490234, Email: joshhhunt@gmail.com", contact.toString());
+    }
 }

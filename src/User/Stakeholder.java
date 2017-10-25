@@ -7,4 +7,9 @@ public class Stakeholder extends User {
         super();
         this.contact = contact;
     }
+
+    @Override
+    public String toString() {
+        return "Stakeholder: " + contact.getDisplayName();
+    }
 }

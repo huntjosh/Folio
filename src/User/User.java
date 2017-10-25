@@ -68,4 +68,9 @@ public abstract class User {
     public boolean addAsset(Asset asset) {
         return assets.add(asset);
     }
+
+    @Override
+    public String toString() {
+        return "User: " + contact.getDisplayName();
+    }
 }

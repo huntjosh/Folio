@@ -7,4 +7,9 @@ public class Administrator extends User {
         super();
         this.contact = contact;
     }
+
+    @Override
+    public String toString() {
+        return "Administrator: " + contact.getDisplayName();
+    }
 }

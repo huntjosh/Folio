@@ -10,6 +10,18 @@ public class Contact {
     private String email;
     private HashMap<String, String> altPhoneNumbers;
 
+    @Override
+    public String toString() {
+        return "First Name: " + firstName +
+                ", Last Name: " + lastName +
+                ", Phone Number: " + phoneNumber +
+                ", Email: " + email;
+    }
+
+    public String getDisplayName() {
+        return firstName + " " + lastName;
+    }
+
     public String getFirstName() {
         return firstName;
     }

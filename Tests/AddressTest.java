@@ -35,4 +35,32 @@ public class AddressTest {
         Assertions.assertEquals(address.getSuburb(), "Fendalton");
         Assertions.assertNotEquals(address.getSuburb(), "opawa");
     }
+
+    @Test
+    void toStringTestBasic() {
+        Address address = new Address(21, "reeves rd", "opawa");
+        Assertions.assertEquals("21 reeves rd, opawa", address.toString());
+    }
+
+    @Test
+    void toStringTest() {
+        Address address = new Address(21, "reeves rd", "opawa");
+        address.setCountry("New Zealand");
+        address.setPostCode("8052");
+        Assertions.assertEquals("21 reeves rd, opawa, New Zealand, 8052", address.toString());
+    }
+
+    @Test
+    void toStringTestNoCountry() {
+        Address address = new Address(21, "reeves rd", "opawa");
+        address.setPostCode("8052");
+        Assertions.assertEquals("21 reeves rd, opawa, 8052", address.toString());
+    }
+
+    @Test
+    void toStringTestNoPostCode() {
+        Address address = new Address(21, "reeves rd", "opawa");
+        address.setCountry("New Zealand");
+        Assertions.assertEquals("21 reeves rd, opawa, New Zealand", address.toString());
+    }
 }

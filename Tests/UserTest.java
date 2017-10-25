@@ -102,4 +102,12 @@ class UserTest {
         bob.removeAllTasks();
         Assertions.assertEquals(bob.getTasks().size(), 0);
     }
+
+    @Test
+    void toStringTest() {
+        Contact bobContact = new Contact.Builder("Bob", "Jones", "02040490234", "Bobby9999@gmail.com").build();
+        User bob = null;
+        try { bob = UserFactory.newUser("Stakeholder", bobContact); }catch (UserException ex){Assertions.fail("User not instantiated");}
+        Assertions.assertEquals(bob.toString(), "Stakeholder: Bob Jones");
+    }
 }

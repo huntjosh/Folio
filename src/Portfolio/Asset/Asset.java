@@ -69,4 +69,13 @@ public class Asset {
         // Returns failed adds
         return HashSetHelper.addToHashSet(this.tasks, tasks);
     }
+
+    public boolean hasTasks(){
+        return !tasks.isEmpty();
+    }
+
+    @Override
+    public String toString() {
+        return "Name: " + name + ", Value: " + value;
+    }
 }

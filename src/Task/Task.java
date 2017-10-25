@@ -1,6 +1,8 @@
 package Task;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.ArrayList;
 import java.util.HashSet;
 import Portfolio.Asset.Asset;
@@ -98,8 +100,11 @@ public class Task{
 
     public ArrayList<Asset> getAssets(){ return new ArrayList<>(assets); }
 
-//    public Task duplicate(){
-//        //  We want to return the same task, but with no assignee
-//        return new Task(getDue(), getCreatedAt(), getName());
-//    }
+    @Override
+    public String toString() {
+        return "Name: " + name +
+                ", Task Due: " + due.format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM, FormatStyle.MEDIUM)) +
+                ", Task Created At: " + createdAt.format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM, FormatStyle.MEDIUM)) +
+                ", Assignee: " + (hasAssignee() ? assignee.getContact().getDisplayName() : "None");
+    }
 }
