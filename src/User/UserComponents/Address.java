@@ -1,70 +1,53 @@
 package User.UserComponents;
 
-public class Address {
-    private int streetNum;
-    private String street;
-    private String suburb;
-    private String postCode;
-    private String country;
-
-    public static Address emptyAddress(){ return new Address(); }
-
-    private Address(){
-
-    }
+public final class Address {
+    private final int streetNum;
+    private final String street;
+    private final String suburb;
+    private final String postCode;
+    private final String country;
 
     @Override
     public String toString() {
-        return streetNum + " " +
-                street + ", " +
+        return  streetNum + " " + street + ", " +
                 suburb +
-                (country != null ? ", " + country :"") +
-                (postCode != null ? ", " + postCode : "");
+                (postCode != null ? ", " + postCode : "") +
+                (country != null ? ", " + country :"");
     }
 
     public Address(int streetNum, String street, String suburb){
+        this(streetNum,street, suburb, null);
+    }
+
+    public Address(int streetNum, String street, String suburb, String postCode){
+        this(streetNum,street, suburb, postCode, null);
+    }
+
+    public Address(int streetNum, String street, String suburb, String postCode, String country){
         this.streetNum = streetNum;
         this.street = street;
         this.suburb = suburb;
+        this.postCode = postCode;
+        this.country = country;
     }
 
     public String getCountry() {
         return country;
     }
 
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
     public String getPostCode() {
         return postCode;
-    }
-
-    public void setPostCode(String postCode) {
-        this.postCode = postCode;
     }
 
     public String getSuburb() {
         return suburb;
     }
 
-    public void setSuburb(String suburb) {
-        this.suburb = suburb;
-    }
-
     public String getStreet() {
         return street;
     }
 
-    public void setStreet(String street) {
-        this.street = street;
-    }
-
     public int getStreetNum() {
         return streetNum;
-    }
-
-    public void setStreetNum(int streetNum) {
-        this.streetNum = streetNum;
     }
 }

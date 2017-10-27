@@ -17,10 +17,11 @@ public class ContactTest {
 
     @Test
     void contactWithAddress() {
+        Address address = new Address(21, "Reeves rd", "Opawa");
         Contact contact = new Contact.Builder("Josh", "Hunt", "02040490234", "joshhhunt@gmail.com")
-                .address(Address.emptyAddress())
+                .address(address)
                 .build();
-        Assertions.assertEquals(contact.getAddress().getClass(), Address.emptyAddress().getClass());
+        Assertions.assertEquals(contact.getAddress().getClass(), address.getClass());
     }
 
     @Test

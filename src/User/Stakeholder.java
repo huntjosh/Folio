@@ -4,12 +4,11 @@ import User.UserComponents.Contact;
 
 public class Stakeholder extends User {
     public Stakeholder(Contact contact){
-        super();
-        this.contact = contact;
+        super(contact);
     }
 
     @Override
     public String toString() {
-        return "Stakeholder: " + contact.getDisplayName();
+        return "Stakeholder: " + getContact().getDisplayName();
     }
 }

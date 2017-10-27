@@ -2,7 +2,7 @@ package User.UserComponents;
 
 import java.util.HashMap;
 
-public class Contact {
+public final class Contact {
     private String firstName;
     private String lastName;
     private String phoneNumber;
@@ -85,7 +85,7 @@ public class Contact {
         private final String phoneNumber;
         private final String email;
 
-        private Address address = Address.emptyAddress();
+        private Address address = null;
         private HashMap<String, String> altPhoneNumbers = new HashMap<>();
 
         public Builder(String firstName, String lastName, String phoneNumber, String email){

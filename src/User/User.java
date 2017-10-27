@@ -10,15 +10,16 @@ import java.util.Iterator;
 
 
 public abstract class User {
-    HashSet<Task> tasks;
-    HashSet<Portfolio> portfolios;
-    HashSet<Asset> assets;
-    Contact contact;
+    private HashSet<Task> tasks;
+    private HashSet<Portfolio> portfolios;
+    private HashSet<Asset> assets;
+    private Contact contact;
 
-    public User(){
+    public User(Contact contact){
         tasks = new HashSet<Task>();
         portfolios = new HashSet<Portfolio>();
         assets = new HashSet<Asset>();
+        this.contact = contact;
     }
 
     public boolean assignTask(Task task) {
