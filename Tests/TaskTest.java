@@ -1,14 +1,11 @@
 package Tests;
 
-import Exceptions.TaskException;
-import Exceptions.UserException;
-import Task.Task;
+import Portfolio.Task.Task;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 
 import User.Stakeholder;
-import User.User;
 import User.UserComponents.Contact;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -17,20 +14,20 @@ class TaskTest {
     @Test
     void createTask(){
         Task task = new Task.Builder(LocalDateTime.now(), LocalDateTime.now(), "Inspection").build();
-        Assertions.assertTrue(task.getClass() == Task.class, "Task class type is incorrect");
+        Assertions.assertTrue(task.getClass() == Task.class, "Portfolio.Task class type is incorrect");
     }
 
     @Test
     void taskName(){
         Task task = new Task.Builder(LocalDateTime.now(), LocalDateTime.now(), "Inspection").build();
-        Assertions.assertTrue(task.getName().equals("Inspection"), "Task name not set correctly");
+        Assertions.assertTrue(task.getName().equals("Inspection"), "Portfolio.Task name not set correctly");
     }
 
     @Test
     void taskNoAssignee(){
         Task task = new Task.Builder(LocalDateTime.now(), LocalDateTime.now(), "Inspection").build();
-        Assertions.assertTrue(!task.hasAssignee(), "Task shouldn't have an assignee at this stage");
-        Assertions.assertTrue(task.getAssignee() == null, "Task returned an unexpected assignee");
+        Assertions.assertTrue(!task.hasAssignee(), "Portfolio.Task shouldn't have an assignee at this stage");
+        Assertions.assertTrue(task.getAssignee() == null, "Portfolio.Task returned an unexpected assignee");
     }
 
     @Test
@@ -45,15 +42,15 @@ class TaskTest {
     void taskCreationDateOnCreation(){
         LocalDateTime timeNow = LocalDateTime.now().minusSeconds(10);
         Task task = new Task.Builder(timeNow, LocalDateTime.now(), "Inspection").build();
-        Assertions.assertTrue(task.getCreatedAt().isEqual(timeNow), "Task created at didn't set correctly");
-        Assertions.assertTrue(!task.getCreatedAt().isEqual(timeNow.plusSeconds(1)), "Task createdat is equal to a different time");
+        Assertions.assertTrue(task.getCreatedAt().isEqual(timeNow), "Portfolio.Task created at didn't set correctly");
+        Assertions.assertTrue(!task.getCreatedAt().isEqual(timeNow.plusSeconds(1)), "Portfolio.Task createdat is equal to a different time");
     }
 
     @Test
     void taskNameChange(){
         Task task = new Task.Builder(LocalDateTime.now(), LocalDateTime.now(), "Inspection").build();
         task.setName("Maintenance");
-        Assertions.assertTrue(task.getName().equals("Maintenance"), "Task name didn't change correctly");
+        Assertions.assertTrue(task.getName().equals("Maintenance"), "Portfolio.Task name didn't change correctly");
     }
 
     @Test
@@ -61,14 +58,14 @@ class TaskTest {
         LocalDateTime time = LocalDateTime.now();
         Task task = new Task.Builder(LocalDateTime.now(), LocalDateTime.now(), "Inspection").build();
         task.setDue(time);
-        Assertions.assertTrue(task.getDue().isEqual(time), "Task due date change didn't work as expected");
+        Assertions.assertTrue(task.getDue().isEqual(time), "Portfolio.Task due date change didn't work as expected");
     }
 
     @Test
     void taskIncorrectNameChange(){
         Task task = new Task.Builder(LocalDateTime.now(), LocalDateTime.now(), "Inspection").build();
         task.setName("Maintenance");
-        Assertions.assertFalse(task.getName().equals("Inspection"), "Task name change didn't work as expected");
+        Assertions.assertFalse(task.getName().equals("Inspection"), "Portfolio.Task name change didn't work as expected");
     }
 
     @Test
@@ -85,11 +82,22 @@ class TaskTest {
         LocalDateTime createdDate = LocalDateTime.now();
         LocalDateTime dueDate = LocalDateTime.now().minusSeconds(10);
         Task task = new Task.Builder(createdDate, dueDate, "Inspection").build();
-        Assertions.assertEquals("Name: Inspection, Task Due: " +
+        Assertions.assertEquals("Name: Inspection, Portfolio.Task Due: " +
                         dueDate.format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM, FormatStyle.MEDIUM)) +
-                        ", Task Created At: " +
+                        ", Portfolio.Task Created At: " +
                         createdDate.format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM, FormatStyle.MEDIUM)) +
                         ", Assignee: None"
                 , task.toString());
+    }
+
+    @Test
+    void taskWithUserOnBuilder(){
+        Stakeholder bob = new Stakeholder(
+                new Contact.Builder("Jim",
+                        "Jones",
+                        "02040490234",
+                        "Joshhhunt@gmail.com").build());
+        Task task = new Task.Builder(LocalDateTime.now(), LocalDateTime.now(), "Inspection").user(bob).build();
+        Assertions.assertEquals(bob, task.getAssignee());
     }
 }

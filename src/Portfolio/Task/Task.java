@@ -1,4 +1,4 @@
-package Task;
+package Portfolio.Task;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -33,8 +33,15 @@ public class Task{
         public Builder user(User user)
         { this.user = user;     return this; }
 
+        public Builder asset(Asset asset)
+        {
+            if (!this.assets.add(asset)) throw new IllegalStateException("Unable to add asset: " + asset.getName());
+
+            return this;
+        }
+
         public Builder assets(HashSet<Asset> assets)
-        { this.assets = assets;     return this; }
+        { for (Asset asset : assets) asset(asset);     return this; }
 
         public Task build(){
             return new Task(this);
@@ -82,7 +89,7 @@ public class Task{
 
     public boolean hasAssignee(){ return this.assignee != null; }
 
-    public boolean hasAsset(){ return assets.size() > 0; }
+    public boolean hasAssets(){ return !assets.isEmpty(); }
 
     public LocalDateTime getCreatedAt() {
         return LocalDateTime.of(createdAt.toLocalDate(), createdAt.toLocalTime());

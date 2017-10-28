@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 
 import Core.HashSetHelper;
-import Task.Task;
+import Portfolio.Task.Task;
 
 public class Asset {
     private String name;
@@ -29,7 +29,7 @@ public class Asset {
         }
 
         public Builder tasks(HashSet<Task> tasks)
-        { this.tasks = tasks;     return this; }
+        { for (Task task : tasks) task(task);     return this; }
 
         public Asset build(){
             return new Asset(this);
