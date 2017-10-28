@@ -2,9 +2,8 @@ package User;
 
 import Portfolio.Asset.Asset;
 import Portfolio.Portfolio;
-import Task.Task;
+import Portfolio.Task.Task;
 import User.UserComponents.Contact;
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 

@@ -1,7 +1,7 @@
 package Portfolio;
 
 import Portfolio.Asset.Asset;
-import Task.Task;
+import Portfolio.Task.Task;
 import java.util.ArrayList;
 
 public class Portfolio {

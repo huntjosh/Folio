@@ -2,7 +2,7 @@ package Tests;
 
 import Exceptions.UserException;
 import Portfolio.Asset.Asset;
-import Task.Task;
+import Portfolio.Task.Task;
 import User.Stakeholder;
 import User.UserComponents.Contact;
 import User.UserFactory;
