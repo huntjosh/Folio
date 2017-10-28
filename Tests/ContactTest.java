@@ -76,4 +76,43 @@ public class ContactTest {
                 .build();
         Assertions.assertEquals("First Name: Josh, Last Name: Hunt, Phone Number: 02040490234, Email: joshhhunt@gmail.com", contact.toString());
     }
+
+    @Test
+    void settersTest() {
+        Contact contact = new Contact.Builder(
+                "Josh",
+                "Hunt",
+                "02040490234",
+                "joshhhunt@gmail.com")
+                .build();
+        contact.setFirstName("bob");
+        contact.setLastName("jones");
+        contact.setEmail("bob@jones.com");
+        contact.setPhoneNumber("0212864636");
+        contact.addAltPhoneNumber("0222938293", "business");
+
+        Assertions.assertEquals("bob", contact.getFirstName());
+        Assertions.assertEquals("jones", contact.getLastName());
+        Assertions.assertEquals("bob@jones.com", contact.getEmail());
+        Assertions.assertEquals("0212864636", contact.getPhoneNumber());
+        Assertions.assertEquals("0222938293", contact.getAltPhoneNumbers().get("business"));
+    }
+
+    @Test
+    void altPhoneNumbers() {
+        Contact contact = new Contact.Builder(
+                "Josh",
+                "Hunt",
+                "02040490234",
+                "joshhhunt@gmail.com")
+                .build();
+
+        contact.addAltPhoneNumber("0222938293", "business");
+
+        Assertions.assertEquals("bob", contact.getFirstName());
+        Assertions.assertEquals("jones", contact.getLastName());
+        Assertions.assertEquals("bob@jones.com", contact.getEmail());
+        Assertions.assertEquals("0212864636", contact.getPhoneNumber());
+        Assertions.assertEquals("0222938293", contact.getAltPhoneNumbers().get("business"));
+    }
 }

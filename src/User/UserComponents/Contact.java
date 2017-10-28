@@ -79,6 +79,10 @@ public final class Contact {
         return false;
     }
 
+    public void addAltPhoneNumber(String phoneNumber, String type){
+        altPhoneNumbers.put(type, phoneNumber);
+    }
+
     public static class Builder {
         private final String firstName;
         private final String lastName;
