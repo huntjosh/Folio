@@ -1,10 +1,10 @@
-package User;
+package user;
 
-import Exceptions.UserException;
-import User.UserComponents.Contact;
+import exceptions.UserException;
+import user.usercomponents.Contact;
 
 public class UserFactory {
-    private UserFactory(){
+    private UserFactory() {
         // We don't want to allow instantiation
         throw new IllegalStateException();
     }

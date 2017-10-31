@@ -1,10 +1,10 @@
-package Tests;
+package tests;
 
-import User.UserComponents.Address;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import user.usercomponents.Address;
 
-public class AddressTest {
+class AddressTest {
     @Test
     void address() {
         Address address = new Address(21, "reeves rd", "opawa");

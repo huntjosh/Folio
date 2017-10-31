@@ -1,9 +1,9 @@
-package User;
+package user;
 
-import User.UserComponents.Contact;
+import user.usercomponents.Contact;
 
 public class Stakeholder extends User {
-    public Stakeholder(Contact contact){
+    public Stakeholder(Contact contact) {
         super(contact);
     }
 

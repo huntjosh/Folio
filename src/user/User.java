@@ -1,9 +1,10 @@
-package User;
+package user;
 
-import Portfolio.Asset.Asset;
-import Portfolio.Portfolio;
-import Portfolio.Task.Task;
-import User.UserComponents.Contact;
+import portfolio.Portfolio;
+import portfolio.asset.Asset;
+import portfolio.task.Task;
+import user.usercomponents.Contact;
+
 import java.util.HashSet;
 import java.util.Iterator;
 
@@ -14,10 +15,10 @@ public abstract class User {
     private HashSet<Asset> assets;
     private Contact contact;
 
-    public User(Contact contact){
-        tasks = new HashSet<Task>();
-        portfolios = new HashSet<Portfolio>();
-        assets = new HashSet<Asset>();
+    User(Contact contact) {
+        tasks = new HashSet<>();
+        portfolios = new HashSet<>();
+        assets = new HashSet<>();
         this.contact = contact;
     }
 
@@ -37,7 +38,7 @@ public abstract class User {
         return true;
     }
 
-    public void removeAllTasks(){
+    public void removeAllTasks() {
         Iterator<Task> iter = tasks.iterator();
         while (iter.hasNext()) {
             iter.next().unassign();
@@ -71,6 +72,6 @@ public abstract class User {
 
     @Override
     public String toString() {
-        return "User: " + contact.getDisplayName();
+        return "user: " + contact.getDisplayName();
     }
 }

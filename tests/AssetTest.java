@@ -1,8 +1,8 @@
-package Tests;
+package tests;
 
-import Portfolio.Asset.Asset;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import portfolio.asset.Asset;
 
 class AssetTest {
     @Test

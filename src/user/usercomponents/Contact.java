@@ -1,4 +1,4 @@
-package User.UserComponents;
+package user.usercomponents;
 
 import java.util.HashMap;
 
@@ -9,6 +9,15 @@ public final class Contact {
     private Address address;
     private String email;
     private HashMap<String, String> altPhoneNumbers;
+
+    Contact(Builder builder) {
+        this.firstName = builder.firstName;
+        this.lastName = builder.lastName;
+        this.email = builder.email;
+        this.phoneNumber = builder.phoneNumber;
+        this.address = builder.address;
+        this.altPhoneNumbers = builder.altPhoneNumbers;
+    }
 
     @Override
     public String toString() {
@@ -70,7 +79,7 @@ public final class Contact {
         this.altPhoneNumbers = altPhoneNumbers;
     }
 
-    public boolean removeAltPhoneNumber(String key){
+    public boolean removeAltPhoneNumber(String key) {
         if (altPhoneNumbers.containsKey(key)) {
             altPhoneNumbers.remove(key);
             return true;
@@ -79,7 +88,7 @@ public final class Contact {
         return false;
     }
 
-    public void addAltPhoneNumber(String phoneNumber, String type){
+    public void addAltPhoneNumber(String phoneNumber, String type) {
         altPhoneNumbers.put(type, phoneNumber);
     }
 
@@ -92,31 +101,26 @@ public final class Contact {
         private Address address = null;
         private HashMap<String, String> altPhoneNumbers = new HashMap<>();
 
-        public Builder(String firstName, String lastName, String phoneNumber, String email){
+        public Builder(String firstName, String lastName, String phoneNumber, String email) {
             this.firstName = firstName;
             this.lastName = lastName;
             this.phoneNumber = phoneNumber;
             this.email = email;
         }
 
-        public Builder address(Address address)
-        { this.address = address;     return this; }
+        public Builder address(Address address) {
+            this.address = address;
+            return this;
+        }
 
-        public Builder altPhone(String description, String phoneNumber)
-        { this.altPhoneNumbers.put(description, phoneNumber);     return this; }
+        public Builder altPhone(String description, String phoneNumber) {
+            this.altPhoneNumbers.put(description, phoneNumber);
+            return this;
+        }
 
-        public Contact build(){
+        public Contact build() {
             return new Contact(this);
         }
 
-    }
-
-    public Contact(Builder builder){
-        this.firstName = builder.firstName;
-        this.lastName = builder.lastName;
-        this.email = builder.email;
-        this.phoneNumber = builder.phoneNumber;
-        this.address = builder.address;
-        this.altPhoneNumbers = builder.altPhoneNumbers;
     }
 }

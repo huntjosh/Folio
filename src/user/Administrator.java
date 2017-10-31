@@ -1,9 +1,9 @@
-package User;
+package user;
 
-import User.UserComponents.Contact;
+import user.usercomponents.Contact;
 
 public class Administrator extends User {
-    public Administrator(Contact contact){
+    Administrator(Contact contact) {
         super(contact);
     }
 

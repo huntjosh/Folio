@@ -1,14 +1,14 @@
-package Tests;
+package tests;
 
-import Exceptions.UserException;
-import Portfolio.Asset.Asset;
-import Portfolio.Task.Task;
-import User.Stakeholder;
-import User.UserComponents.Contact;
-import User.UserFactory;
-import User.User;
+import exceptions.UserException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import portfolio.asset.Asset;
+import portfolio.task.Task;
+import user.Stakeholder;
+import user.User;
+import user.UserFactory;
+import user.usercomponents.Contact;
 
 import java.time.LocalDateTime;
 
@@ -17,15 +17,23 @@ class UserTest {
     void create() {
         Contact bobContact = new Contact.Builder("Bob", "Jones", "02040490234", "Bobby9999@gmail.com").build();
         User bob = null;
-        try { bob = UserFactory.newUser("Stakeholder", bobContact); }catch (UserException ex){Assertions.fail("User not instantiated");}
-        Assertions.assertTrue(bob.getClass() == Stakeholder.class, "User class type is incorrect");
+        try {
+            bob = UserFactory.newUser("Stakeholder", bobContact);
+        } catch (UserException ex) {
+            Assertions.fail("user not instantiated");
+        }
+        Assertions.assertTrue(bob.getClass() == Stakeholder.class, "user class type is incorrect");
     }
 
     @Test
     void getContact() {
         Contact bobContact = new Contact.Builder("Bob", "Jones", "02040490234", "Bobby9999@gmail.com").build();
         User bob = null;
-        try { bob = UserFactory.newUser("Stakeholder", bobContact); }catch (UserException ex){Assertions.fail("User not instantiated");}
+        try {
+            bob = UserFactory.newUser("Stakeholder", bobContact);
+        } catch (UserException ex) {
+            Assertions.fail("user not instantiated");
+        }
         Assertions.assertEquals("Bobby9999@gmail.com", bob.getContact().getEmail());
     }
 
@@ -33,7 +41,11 @@ class UserTest {
     void addTask() {
         Contact bobContact = new Contact.Builder("Bob", "Jones", "02040490234", "Bobby9999@gmail.com").build();
         User bob = null;
-        try { bob = UserFactory.newUser("Stakeholder", bobContact); }catch (UserException ex){Assertions.fail("User not instantiated");}
+        try {
+            bob = UserFactory.newUser("Stakeholder", bobContact);
+        } catch (UserException ex) {
+            Assertions.fail("user not instantiated");
+        }
         Task inspection = new Task.Builder(LocalDateTime.now(), LocalDateTime.now(), "Inspection").build();
         bob.assignTask(inspection);
         Assertions.assertTrue(bob.getTasks().contains(inspection));
@@ -45,21 +57,30 @@ class UserTest {
     void addAsset() {
         Contact bobContact = new Contact.Builder("Bob", "Jones", "02040490234", "Bobby9999@gmail.com").build();
         User bob = null;
-        try { bob = UserFactory.newUser("Stakeholder", bobContact); }catch (UserException ex){Assertions.fail("User not instantiated");}
+        try {
+            bob = UserFactory.newUser("Stakeholder", bobContact);
+        } catch (UserException ex) {
+            Assertions.fail("user not instantiated");
+        }
         Asset lambo = new Asset.Builder("Lambo", 100000).build();
         Assertions.assertTrue(bob.addAsset(lambo));
         Assertions.assertTrue(bob.getAssets().contains(lambo));
-        Assertions.assertEquals(1, bob.getAssets().size());    }
+        Assertions.assertEquals(1, bob.getAssets().size());
+    }
 
     @Test
     void removeOnlyTask() {
         Contact bobContact = new Contact.Builder("Bob", "Jones", "02040490234", "Bobby9999@gmail.com").build();
         User bob = null;
-        try { bob = UserFactory.newUser("Stakeholder", bobContact); }catch (UserException ex){Assertions.fail("User not instantiated");}
+        try {
+            bob = UserFactory.newUser("Stakeholder", bobContact);
+        } catch (UserException ex) {
+            Assertions.fail("user not instantiated");
+        }
         Task inspection = new Task.Builder(LocalDateTime.now(), LocalDateTime.now(), "Inspection").build();
         Assertions.assertTrue(bob.assignTask(inspection));
         Assertions.assertTrue(bob.getTasks().contains(inspection));
-        bob.removeTask(inspection);
+        Assertions.assertTrue(bob.removeTask(inspection));
         Assertions.assertFalse(bob.getTasks().contains(inspection));
     }
 
@@ -67,7 +88,11 @@ class UserTest {
     void removeOneOfManyTasks() {
         Contact bobContact = new Contact.Builder("Bob", "Jones", "02040490234", "Bobby9999@gmail.com").build();
         User bob = null;
-        try { bob = UserFactory.newUser("Stakeholder", bobContact); }catch (UserException ex){Assertions.fail("User not instantiated");}
+        try {
+            bob = UserFactory.newUser("Stakeholder", bobContact);
+        } catch (UserException ex) {
+            Assertions.fail("user not instantiated");
+        }
         Task inspection = new Task.Builder(LocalDateTime.now(), LocalDateTime.now(), "Inspection").build();
         Task cleaning = new Task.Builder(LocalDateTime.now(), LocalDateTime.now(), "Cleaning").build();
         Assertions.assertTrue(bob.assignTask(inspection));
@@ -81,7 +106,11 @@ class UserTest {
     void removeAllTasks() {
         Contact bobContact = new Contact.Builder("Bob", "Jones", "02040490234", "Bobby9999@gmail.com").build();
         User bob = null;
-        try { bob = UserFactory.newUser("Stakeholder", bobContact); }catch (UserException ex){Assertions.fail("User not instantiated");}
+        try {
+            bob = UserFactory.newUser("Stakeholder", bobContact);
+        } catch (UserException ex) {
+            Assertions.fail("user not instantiated");
+        }
         Task inspection = new Task.Builder(LocalDateTime.now(), LocalDateTime.now(), "Inspection").build();
         Task cleaning = new Task.Builder(LocalDateTime.now(), LocalDateTime.now(), "Cleaning").build();
         Assertions.assertTrue(bob.assignTask(inspection));
@@ -95,7 +124,11 @@ class UserTest {
     void removeAllOneTasks() {
         Contact bobContact = new Contact.Builder("Bob", "Jones", "02040490234", "Bobby9999@gmail.com").build();
         User bob = null;
-        try { bob = UserFactory.newUser("Stakeholder", bobContact); }catch (UserException ex){Assertions.fail("User not instantiated");}
+        try {
+            bob = UserFactory.newUser("Stakeholder", bobContact);
+        } catch (UserException ex) {
+            Assertions.fail("user not instantiated");
+        }
         Task inspection = new Task.Builder(LocalDateTime.now(), LocalDateTime.now(), "Inspection").build();
         Assertions.assertTrue(bob.assignTask(inspection));
         Assertions.assertTrue(bob.getTasks().contains(inspection));
@@ -107,7 +140,28 @@ class UserTest {
     void toStringTest() {
         Contact bobContact = new Contact.Builder("Bob", "Jones", "02040490234", "Bobby9999@gmail.com").build();
         User bob = null;
-        try { bob = UserFactory.newUser("Stakeholder", bobContact); }catch (UserException ex){Assertions.fail("User not instantiated");}
+        try {
+            bob = UserFactory.newUser("Stakeholder", bobContact);
+        } catch (UserException ex) {
+            Assertions.fail("user not instantiated");
+        }
         Assertions.assertEquals(bob.toString(), "Stakeholder: Bob Jones");
+    }
+
+    @Test
+    void changeContact() {
+        Contact bobContact = new Contact.Builder("Bob", "Jones", "02040490234", "Bobby9999@gmail.com").build();
+        Contact jimContact = new Contact.Builder("Jim", "Jones", "02040490234", "Bobby9999@gmail.com").build();
+        User bob = null;
+
+        try {
+            bob = UserFactory.newUser("Administrator", jimContact);
+        } catch (UserException ex) {
+            Assertions.fail("user not instantiated");
+        }
+
+        bob.setContact(bobContact);
+        Assertions.assertNotEquals(jimContact, bob.getContact());
+        Assertions.assertEquals(bobContact, bob.getContact());
     }
 }

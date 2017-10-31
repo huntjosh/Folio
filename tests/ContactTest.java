@@ -1,11 +1,11 @@
-package Tests;
+package tests;
 
-import User.UserComponents.Address;
-import User.UserComponents.Contact;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import user.usercomponents.Address;
+import user.usercomponents.Contact;
 
-public class ContactTest {
+class ContactTest {
     @Test
     void baseContact() {
         Contact contact = new Contact.Builder("Josh", "Hunt", "02040490234", "joshhhunt@gmail.com").build();
@@ -109,10 +109,6 @@ public class ContactTest {
 
         contact.addAltPhoneNumber("0222938293", "business");
 
-        Assertions.assertEquals("bob", contact.getFirstName());
-        Assertions.assertEquals("jones", contact.getLastName());
-        Assertions.assertEquals("bob@jones.com", contact.getEmail());
-        Assertions.assertEquals("0212864636", contact.getPhoneNumber());
         Assertions.assertEquals("0222938293", contact.getAltPhoneNumbers().get("business"));
     }
 }

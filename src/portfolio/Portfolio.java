@@ -1,7 +1,8 @@
-package Portfolio;
+package portfolio;
 
-import Portfolio.Asset.Asset;
-import Portfolio.Task.Task;
+import portfolio.asset.Asset;
+import portfolio.task.Task;
+
 import java.util.ArrayList;
 
 public class Portfolio {
