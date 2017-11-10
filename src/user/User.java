@@ -10,9 +10,9 @@ import java.util.Iterator;
 
 
 public abstract class User {
-    private HashSet<Task> tasks;
-    private HashSet<Portfolio> portfolios;
-    private HashSet<Asset> assets;
+    private final HashSet<Task> tasks;
+    private final HashSet<Portfolio> portfolios;
+    private final HashSet<Asset> assets;
     private Contact contact;
 
     User(Contact contact) {

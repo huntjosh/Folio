@@ -7,11 +7,11 @@ import java.util.Set;
 
 public abstract class Leaf {
 
-    private HashSet<Leaf> children;
+    private final HashSet<Leaf> children;
     private Leaf parent;
-    private LeafType type;
+    private final LeafType type;
 
-    public Leaf(HashSet<Leaf> children, Leaf parent, LeafType type) {
+    protected Leaf(HashSet<Leaf> children, Leaf parent, LeafType type) {
         this.type = type;
         this.children = children;
         this.parent = parent;
@@ -41,12 +41,10 @@ public abstract class Leaf {
         return parent;
     }
 
-    public boolean linkToChild(Leaf child) {
+    protected void linkToChild(Leaf child) {
         if (addChild(child)) {
             child.addParent(this);
-            return true;
         }
-        return false;
     }
 
     private LeafType getType() {

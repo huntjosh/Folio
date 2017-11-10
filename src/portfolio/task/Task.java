@@ -87,7 +87,7 @@ public class Task extends Leaf {
 
         private User user = null;
         private Leaf parent = null;
-        private HashSet<Leaf> children = new HashSet<>();
+        private final HashSet<Leaf> children = new HashSet<>();
 
 
         public Builder(LocalDateTime createdAt, LocalDateTime due, String name) {

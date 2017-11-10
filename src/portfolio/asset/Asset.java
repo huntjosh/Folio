@@ -10,7 +10,7 @@ public class Asset extends Leaf {
     private String name;
     private double value;
 
-    Asset(Builder builder) {
+    private Asset(Builder builder) {
         super(builder.children, builder.parent, LeafType.ASSET);
         this.name = builder.name;
         this.value = builder.value;
@@ -51,7 +51,7 @@ public class Asset extends Leaf {
         private final double value;
 
         private Leaf parent = null;
-        private HashSet<Leaf> children = new HashSet<>();
+        private final HashSet<Leaf> children = new HashSet<>();
 
         public Builder(String name, double value) {
             this.value = value;

@@ -16,6 +16,7 @@ class AssetTaskTest {
         Task cleanCar = new Task.Builder(LocalDateTime.now(), LocalDateTime.now(), "Clean car").build();
         Asset car = new Asset.Builder("Mercedes S-class", 30000).task(cleanCar).build();
         Assertions.assertTrue(car.getChildren().contains(cleanCar));
+        Assertions.assertTrue(cleanCar.hasAsset());
     }
 
     @Test

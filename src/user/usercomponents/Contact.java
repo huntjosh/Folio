@@ -10,7 +10,7 @@ public final class Contact {
     private String email;
     private HashMap<String, String> altPhoneNumbers;
 
-    Contact(Builder builder) {
+    private Contact(Builder builder) {
         this.firstName = builder.firstName;
         this.lastName = builder.lastName;
         this.email = builder.email;
@@ -99,7 +99,7 @@ public final class Contact {
         private final String email;
 
         private Address address = null;
-        private HashMap<String, String> altPhoneNumbers = new HashMap<>();
+        private final HashMap<String, String> altPhoneNumbers = new HashMap<>();
 
         public Builder(String firstName, String lastName, String phoneNumber, String email) {
             this.firstName = firstName;
